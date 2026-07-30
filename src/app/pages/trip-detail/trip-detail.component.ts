@@ -489,7 +489,7 @@ export class TripDetailComponent {
 
   upiLink(s: { to: string; toName: string; amount: number }): string {
     const t = this.trip();
-    return buildUpiUri(this.payeeUpi(s.to), s.toName, s.amount, t ? `Split: ${t.name}` : 'Split Karo');
+    return buildUpiUri(this.payeeUpi(s.to), s.toName, s.amount, t ? `Split: ${t.name}` : 'WhoPaid');
   }
 
   // QR / shareable pay-link sheet
@@ -500,7 +500,7 @@ export class TripDetailComponent {
       vpa: this.payeeUpi(s.to),
       name: s.toName,
       amount: s.amount,
-      note: t ? `Split: ${t.name}` : 'Split Karo',
+      note: t ? `Split: ${t.name}` : 'WhoPaid',
     });
   }
 
@@ -511,7 +511,7 @@ export class TripDetailComponent {
     let text = `Hi ${s.fromName}, please settle ₹${amt} to ${s.toName}`;
     if (t) text += ` for "${t.name}"`;
     if (upi) text += `. UPI: ${upi}`;
-    text += ' — via Split Karo';
+    text += ' — via WhoPaid';
     return `https://wa.me/?text=${encodeURIComponent(text)}`;
   }
 
@@ -717,7 +717,7 @@ export class TripDetailComponent {
     const t = this.trip();
     if (!t) return '';
     const rupee = (n: number) => '₹' + (Math.round(n * 100) / 100).toLocaleString('en-IN');
-    const lines: string[] = [`✈️ *${t.name}* — Split Karo`, ''];
+    const lines: string[] = [`✈️ *${t.name}* — WhoPaid`, ''];
     lines.push(`💰 Total: ${rupee(this.grandTotal())}`);
     lines.push(`👥 ${t.members.length} members`);
     lines.push('');
@@ -730,7 +730,7 @@ export class TripDetailComponent {
         lines.push(`• ${s.fromName} → ${s.toName}: ${rupee(s.amount)}${s.paid ? ' ✅' : ''}${upi ? `  (UPI: ${upi})` : ''}`);
       }
     }
-    lines.push('', '_via Split Karo_');
+    lines.push('', '_via WhoPaid_');
     return lines.join('\n');
   }
 
@@ -756,7 +756,7 @@ export class TripDetailComponent {
   shareBreakdown(): void {
     const t = this.trip();
     if (!t) return;
-    this.shareTextOut(this.buildBreakdownText(t), `${t.name} — Split Karo`);
+    this.shareTextOut(this.buildBreakdownText(t), `${t.name} — WhoPaid`);
   }
 
   private buildBreakdownText(t: Trip): string {
@@ -805,7 +805,7 @@ export class TripDetailComponent {
         lines.push('');
       }
     }
-    lines.push('_Made with Split Karo_');
+    lines.push('_Made with WhoPaid_');
     return lines.join('\n');
   }
 

@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rent Split Calculator — Equal or Day-Wise | WhoPaid</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Free rent split calculator for flatmates. Split rent equally, or day-wise so someone who stayed fewer days pays proportionally less. No sign-up.">
+<link rel="canonical" href="https://prasanta-badatya.github.io/split_karo/rent-split-calculator/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://prasanta-badatya.github.io/split_karo/rent-split-calculator/">
+<meta property="og:title" content="Rent Split Calculator — Equal or Day-Wise">
+<meta property="og:description" content="Split rent between flatmates equally or day-wise. Free calculator, instant results, no sign-up.">
+<meta property="og:image" content="https://prasanta-badatya.github.io/split_karo/assets/og-image.png">
+<meta property="og:site_name" content="WhoPaid">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rent Split Calculator — Equal or Day-Wise">
+<meta name="twitter:description" content="Split rent between flatmates equally or day-wise. Free, instant, no sign-up.">
+<meta name="twitter:image" content="https://prasanta-badatya.github.io/split_karo/assets/og-image.png">
+
+<meta name="theme-color" content="#6366f1">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "WhoPaid", "item": "https://prasanta-badatya.github.io/split_karo/" },
+    { "@type": "ListItem", "position": 2, "name": "Rent Split Calculator", "item": "https://prasanta-badatya.github.io/split_karo/rent-split-calculator/" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you split rent when one flatmate stays fewer days?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use a day-wise split. Add up the days every person actually stayed to get the total person-days, then charge each person (their days divided by total person-days) times the rent. Someone who stayed 15 days out of a 60 person-day total pays exactly a quarter of the rent."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should rent be split equally or day-wise?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Split rent equally when everyone holds a room for the whole month, since the room is reserved whether they sleep there or not. Split day-wise for costs that are actually consumed, such as groceries, food, or electricity, and for flatmates who joined or left partway through the month."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this rent split calculator free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. It is completely free, needs no sign-up, and runs entirely in your browser. Nothing you type is sent to a server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I split rent with a mid-month move-in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Enter the number of days each person was present in the billing period and choose the day-wise mode. A flatmate who moved in on the 20th of a 30-day month has 11 days present, and the calculator prorates their share automatically."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--b:#6366f1;--b7:#4338ca;--ink:#0f172a;--mut:#475569;--line:#e2e8f0;--bg:#f8fafc}
+  body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
+       line-height:1.65;background:#fff;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,255,255,.92);
+         backdrop-filter:blur(8px);z-index:10}
+  header .wrap{display:flex;align-items:center;gap:10px;height:56px}
+  .mark{width:30px;height:30px;border-radius:9px;background:var(--b);display:flex;align-items:center;justify-content:center}
+  .mark svg{width:19px;height:19px}
+  .bname{font-weight:700;font-size:15px}
+  header a.cta{margin-left:auto;font-size:13px;font-weight:600;color:var(--b7);text-decoration:none}
+  nav.crumb{font-size:13px;color:var(--mut);padding:18px 0 0}
+  nav.crumb a{color:var(--b7)}
+  h1{font-size:2rem;line-height:1.2;letter-spacing:-.5px;margin:10px 0 12px}
+  .lede{color:var(--mut);font-size:1.05rem;margin-bottom:26px}
+  h2{font-size:1.3rem;margin:38px 0 12px;letter-spacing:-.3px}
+  h3{font-size:1.05rem;margin:22px 0 8px}
+  p{margin-bottom:14px;color:#334155}
+  ul,ol{margin:0 0 14px 1.2rem;color:#334155}
+  li{margin:6px 0}
+  /* calculator */
+  .calc{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--bg);margin-bottom:8px}
+  .row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .fld{flex:1;min-width:150px}
+  label{display:block;font-size:12px;font-weight:600;text-transform:uppercase;
+        letter-spacing:.5px;color:var(--mut);margin-bottom:5px}
+  input[type=text],input[type=number]{width:100%;padding:10px 12px;border:1px solid #cbd5e1;
+        border-radius:10px;font:inherit;font-size:15px;background:#fff}
+  input:focus{outline:2px solid var(--b);outline-offset:-1px;border-color:var(--b)}
+  .modes{display:flex;gap:8px}
+  .modes button{flex:1;padding:10px;border:1px solid #cbd5e1;background:#fff;border-radius:10px;
+        font:inherit;font-size:14px;font-weight:600;cursor:pointer;color:var(--mut)}
+  .modes button[aria-pressed=true]{background:var(--b);border-color:var(--b);color:#fff}
+  table{width:100%;border-collapse:collapse;margin-top:6px}
+  th,td{text-align:left;padding:9px 6px;border-bottom:1px solid var(--line);font-size:14px}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--mut)}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  .mrow input{margin:0}
+  .rm{background:none;border:0;color:#94a3b8;cursor:pointer;font-size:17px;padding:0 4px;line-height:1}
+  .rm:hover{color:#dc2626}
+  .btn{padding:9px 15px;border:1px dashed #cbd5e1;background:#fff;border-radius:10px;
+       font:inherit;font-size:14px;font-weight:600;cursor:pointer;color:var(--b7)}
+  .out{margin-top:16px;border-top:2px solid var(--ink);padding-top:12px}
+  .out .tot{display:flex;justify-content:space-between;font-weight:700;padding-top:8px;
+       border-top:1px solid var(--line);margin-top:4px}
+  .warn{background:#fef3c7;border:1px solid #fcd34d;color:#78350f;padding:9px 12px;
+       border-radius:9px;font-size:13.5px;margin-top:10px}
+  .note{font-size:13px;color:#64748b;margin-top:8px}
+  .cta-box{background:linear-gradient(125deg,#6366f1,#4f46e5);color:#fff;border-radius:16px;
+       padding:26px;margin:38px 0 10px;text-align:center}
+  .cta-box h2{color:#fff;margin:0 0 8px;font-size:1.25rem}
+  .cta-box p{color:rgba(255,255,255,.9);margin-bottom:16px}
+  .cta-box a{display:inline-block;background:#fff;color:var(--b7);font-weight:700;
+       padding:12px 26px;border-radius:999px;text-decoration:none}
+  .eg{background:var(--bg);border-left:3px solid var(--b);padding:14px 16px;border-radius:0 10px 10px 0;margin:14px 0}
+  dt{font-weight:600;margin-top:16px}
+  dd{margin:4px 0 0;color:#334155}
+  footer{border-top:1px solid var(--line);margin-top:44px;padding:22px 0 40px;
+       font-size:13.5px;color:var(--mut)}
+  footer a{color:var(--b7)}
+  @media(max-width:520px){h1{font-size:1.6rem}.calc{padding:16px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="mark"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11" fill="#fff"/><path d="M17.3 7 L13.4 16 L16.6 16 L14.7 25 L19.8 14.7 L16.6 14.7 Z" fill="#4338ca"/></svg></span>
+    <span class="bname">WhoPaid</span>
+    <a class="cta" href="../">Open the app →</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <nav class="crumb"><a href="../">WhoPaid</a> › Rent Split Calculator</nav>
+
+  <h1>Rent Split Calculator — Equal or Day-Wise</h1>
+  <p class="lede">Work out exactly what each flatmate owes. Split the rent equally, or day-wise
+  so someone who stayed fewer days pays proportionally less. Free, instant, nothing leaves your browser.</p>
+
+  <section class="calc" aria-label="Rent split calculator">
+    <div class="row">
+      <div class="fld">
+        <label for="amt">Total amount (₹)</label>
+        <input id="amt" type="number" min="0" step="1" value="12000" inputmode="decimal">
+      </div>
+      <div class="fld">
+        <label id="modeLabel">Split method</label>
+        <div class="modes" role="group" aria-labelledby="modeLabel">
+          <button type="button" id="mEqual" aria-pressed="false">Equal</button>
+          <button type="button" id="mDay" aria-pressed="true">Day-wise</button>
+        </div>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Flatmate</th><th class="num" id="daysHead">Days present</th><th class="num">Share</th><th></th></tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+
+    <div style="margin-top:12px"><button type="button" class="btn" id="add">+ Add flatmate</button></div>
+
+    <div class="out">
+      <div class="tot"><span>Total</span><span id="sum">₹0</span></div>
+      <div id="warn"></div>
+      <p class="note" id="note"></p>
+    </div>
+  </section>
+
+  <h2>How day-wise rent splitting works</h2>
+  <p>Day-wise splitting charges each person in proportion to the days they were actually present,
+  instead of dividing the bill into equal parts. The formula is:</p>
+  <div class="eg"><strong>Your share = (your days ÷ total person-days) × total amount</strong></div>
+  <p><em>Total person-days</em> is the sum of everyone's days, not the number of days in the month.
+  That distinction matters — it is the single most common mistake people make doing this by hand.</p>
+
+  <h3>Worked example</h3>
+  <p>Three flatmates share ₹12,000 of costs for a 30-day month. Asha and Bhavin were there all
+  30 days; Chetan moved in on the 20th, so he was present 11 days.</p>
+  <ul>
+    <li>Total person-days = 30 + 30 + 11 = <strong>71</strong></li>
+    <li>Asha = (30 ÷ 71) × ₹12,000 = <strong>₹5,070.42</strong></li>
+    <li>Bhavin = (30 ÷ 71) × ₹12,000 = <strong>₹5,070.42</strong></li>
+    <li>Chetan = (11 ÷ 71) × ₹12,000 = <strong>₹1,859.15</strong></li>
+  </ul>
+  <p>Split equally instead and Chetan would pay ₹4,000 for eleven days — roughly ₹2,140 more than
+  his fair share. That gap is why day-wise matters.</p>
+
+  <h2>Equal or day-wise — which should you use?</h2>
+  <p>They are not interchangeable, and the honest answer is that most flatmates need both in the same month.</p>
+  <h3>Use an equal split for rent itself</h3>
+  <p>A room is reserved for you whether you sleep in it or not. If everyone holds their room for the
+  full month, the landlord charges for the room, not for attendance — so an equal split is the fair one.
+  Prorating rent because someone spent a fortnight at their parents' place is usually the wrong call.</p>
+  <h3>Use a day-wise split for consumed costs</h3>
+  <p>Groceries, cooking gas, vegetables, and electricity are consumed only when someone is actually there.
+  These should follow days present. The same applies to rent when a flatmate genuinely
+  <strong>joined or left partway through the month</strong> — they held the room for part of the period, so they owe part of the rent.</p>
+  <p>A practical rule: fixed costs equal, consumed costs day-wise.</p>
+
+  <h2>Frequently asked questions</h2>
+  <dl>
+    <dt>How do you split rent when one flatmate stays fewer days?</dt>
+    <dd>Use a day-wise split. Add up the days everyone actually stayed to get total person-days,
+    then charge each person (their days ÷ total person-days) × the rent.</dd>
+    <dt>Should rent be split equally or day-wise?</dt>
+    <dd>Equally when everyone holds a room all month, since the room is reserved regardless.
+    Day-wise for consumed costs like groceries and electricity, and for anyone who joined or left mid-month.</dd>
+    <dt>Is this rent split calculator free?</dt>
+    <dd>Yes — free, no sign-up, and it runs entirely in your browser. Nothing you type is sent to a server.</dd>
+    <dt>How do I split rent with a mid-month move-in?</dt>
+    <dd>Enter each person's days present and pick day-wise. Someone who moved in on the 20th of a
+    30-day month has 11 days, and the calculator prorates their share automatically.</dd>
+  </dl>
+
+  <div class="cta-box">
+    <h2>Splitting every month with the same people?</h2>
+    <p>WhoPaid saves your group, carries unpaid dues to next month, and settles up over UPI.</p>
+    <a href="../">Open WhoPaid — free</a>
+  </div>
+
+  <p style="margin-top:26px;font-size:14.5px">See also:
+  <a href="../trip-expense-splitter/" style="color:var(--b7)">trip expense splitter</a> ·
+  <a href="../splitwise-alternative/" style="color:var(--b7)">free Splitwise alternative</a></p>
+</main>
+
+<footer class="wrap">
+  <p><a href="../">WhoPaid</a> — free bill split calculator for trips, rent and group expenses.
+  No sign-up, works offline, settles over UPI.</p>
+</footer>
+
+<script>
+(function(){
+  var rows=document.getElementById('rows'), amt=document.getElementById('amt'),
+      sum=document.getElementById('sum'), warn=document.getElementById('warn'),
+      note=document.getElementById('note'), daysHead=document.getElementById('daysHead'),
+      mEqual=document.getElementById('mEqual'), mDay=document.getElementById('mDay');
+  var mode='daywise';
+  var people=[{n:'Asha',d:30},{n:'Bhavin',d:30},{n:'Chetan',d:11}];
+
+  function money(v){
+    if(!isFinite(v)) v=0;
+    return '₹'+(Math.round(v*100)/100).toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
+  }
+
+  function shares(){
+    var total=parseFloat(amt.value)||0, out=[];
+    if(mode==='equal'){
+      var per=people.length?total/people.length:0;
+      people.forEach(function(p){out.push(per)});
+    }else{
+      var td=people.reduce(function(s,p){return s+(parseFloat(p.d)||0)},0);
+      people.forEach(function(p){out.push(td>0?((parseFloat(p.d)||0)/td)*total:0)});
+    }
+    return out;
+  }
+
+  function render(){
+    var sh=shares();
+    rows.innerHTML='';
+    people.forEach(function(p,i){
+      var tr=document.createElement('tr'); tr.className='mrow';
+      var td1=document.createElement('td');
+      var nm=document.createElement('input'); nm.type='text'; nm.value=p.n; nm.setAttribute('aria-label','Name');
+      nm.oninput=function(){people[i].n=nm.value};
+      td1.appendChild(nm); tr.appendChild(td1);
+
+      var td2=document.createElement('td'); td2.className='num';
+      var dy=document.createElement('input'); dy.type='number'; dy.min='0'; dy.step='1';
+      dy.value=p.d; dy.setAttribute('aria-label','Days present'); dy.style.textAlign='right';
+      dy.disabled=(mode==='equal');
+      dy.oninput=function(){people[i].d=dy.value;render()};
+      td2.appendChild(dy); tr.appendChild(td2);
+
+      var td3=document.createElement('td'); td3.className='num';
+      td3.style.fontWeight='600'; td3.textContent=money(sh[i]); tr.appendChild(td3);
+
+      var td4=document.createElement('td'); td4.style.width='28px';
+      if(people.length>1){
+        var b=document.createElement('button'); b.type='button'; b.className='rm';
+        b.textContent='×'; b.title='Remove'; b.setAttribute('aria-label','Remove '+p.n);
+        b.onclick=function(){people.splice(i,1);render()};
+        td4.appendChild(b);
+      }
+      tr.appendChild(td4);
+      rows.appendChild(tr);
+    });
+
+    var tot=sh.reduce(function(a,b){return a+b},0);
+    sum.textContent=money(tot);
+
+    var td=people.reduce(function(s,p){return s+(parseFloat(p.d)||0)},0);
+    warn.innerHTML = (mode==='daywise'&&td<=0)
+      ? '<div class="warn">Add at least one day to split day-wise — otherwise there is nothing to prorate against.</div>'
+      : '';
+    note.textContent = (mode==='daywise')
+      ? 'Total person-days: '+td+'. Each share = (days ÷ '+td+') × amount.'
+      : 'Split equally between '+people.length+' '+(people.length===1?'person':'people')+'.';
+    daysHead.style.opacity = (mode==='equal') ? '.45' : '1';
+  }
+
+  function setMode(m){
+    mode=m;
+    mEqual.setAttribute('aria-pressed', m==='equal');
+    mDay.setAttribute('aria-pressed', m==='daywise');
+    render();
+  }
+
+  mEqual.onclick=function(){setMode('equal')};
+  mDay.onclick=function(){setMode('daywise')};
+  amt.oninput=render;
+  document.getElementById('add').onclick=function(){
+    people.push({n:'Flatmate '+(people.length+1),d:30}); render();
+  };
+  render();
+})();
+</script>
+</body>
+</html>

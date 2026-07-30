@@ -41,7 +41,7 @@ import { QrService } from '../../services/qr.service';
         <p class="text-sm text-gray-500 mb-6">This payment link is missing details.</p>
       </ng-template>
 
-      <a routerLink="/" class="mt-8 text-xs text-brand-500 hover:text-brand-600 font-semibold">← Split Karo</a>
+      <a routerLink="/" class="mt-8 text-xs text-brand-500 hover:text-brand-600 font-semibold">← WhoPaid</a>
     </div>
   `,
 })

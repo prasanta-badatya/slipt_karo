@@ -147,7 +147,7 @@ interface BackupFile {
                 <path d="M17.3 7 L13.4 16 L16.6 16 L14.7 25 L19.8 14.7 L16.6 14.7 Z" fill="#4338ca"/>
               </svg>
             </div>
-            <p class="font-bold text-gray-900">Split Karo</p>
+            <p class="font-bold text-gray-900">WhoPaid</p>
             <p class="text-xs text-gray-400 mt-1">Smart expense splitter · Free · Offline</p>
             <p class="text-xs text-gray-300 mt-3">Works without internet · No signup · No ads</p>
           </div>
@@ -260,7 +260,7 @@ export class SettingsComponent {
     const stamp = new Date().toISOString().slice(0, 10);
     const a = Object.assign(document.createElement('a'), {
       href: url,
-      download: `split-karo-backup-${stamp}.json`,
+      download: `whopaid-backup-${stamp}.json`,
     });
     document.body.appendChild(a);
     a.click();
@@ -278,7 +278,7 @@ export class SettingsComponent {
       const text = await file.text();
       const data = JSON.parse(text) as Partial<BackupFile>;
       if (data.app !== 'split-karo' || !Array.isArray(data.groups) || !Array.isArray(data.trips)) {
-        this.ui.toast('Not a valid Split Karo backup', '❌');
+        this.ui.toast('Not a valid WhoPaid backup', '❌');
         input.value = '';
         return;
       }

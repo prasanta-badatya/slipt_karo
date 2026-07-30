@@ -22,7 +22,7 @@ import { ThemeToggleComponent } from '../../components/theme-toggle/theme-toggle
               <path d="M17.3 7 L13.4 16 L16.6 16 L14.7 25 L19.8 14.7 L16.6 14.7 Z" fill="#4338ca"/>
             </svg>
           </div>
-          <span class="text-base font-bold text-gray-900">Split Karo</span>
+          <span class="text-base font-bold text-gray-900">WhoPaid</span>
           <span class="ml-auto hidden sm:inline text-xs text-gray-400 font-medium mr-3">Free · No signup · Offline</span>
           <app-theme-toggle class="ml-auto sm:ml-0"></app-theme-toggle>
         </div>
@@ -47,12 +47,12 @@ import { ThemeToggleComponent } from '../../components/theme-toggle/theme-toggle
                 </div>
 
                 <h1 class="text-4xl sm:text-5xl lg:text-[52px] font-bold text-gray-900 leading-tight mb-4 anim-fade-up anim-d1">
-                  Split bills,<br/>
+                  Split trip, rent &amp; group bills<br/>
                   <span class="text-brand-500">stress-free.</span>
                 </h1>
 
                 <p class="text-lg text-gray-500 font-medium mb-6 anim-fade-up anim-d2">
-                  "No more awkward money conversations<br class="hidden sm:block"/> with your roommates."
+                  "No more awkward money conversations<br class="hidden sm:block"/> with friends or flatmates."
                 </p>
 
                 <div class="flex flex-wrap gap-2 justify-center lg:justify-start mb-8 anim-fade-up anim-d3">
@@ -133,7 +133,7 @@ import { ThemeToggleComponent } from '../../components/theme-toggle/theme-toggle
         <!-- ═══ WHAT CAN I DO? ═══ -->
         <section class="bg-gray-50 border-t border-gray-100 py-10">
           <div class="max-w-6xl mx-auto px-4 sm:px-8">
-            <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest text-center mb-6">What can Split Karo do?</p>
+            <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest text-center mb-6">What can WhoPaid do?</p>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
 
               <!-- Quick Split -->

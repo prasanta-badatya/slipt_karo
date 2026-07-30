@@ -27,7 +27,7 @@ const TAB_ROOTS = ['/', '', '/groups', '/trips', '/settings'];
       <div class="w-16 h-16 bg-white/15 rounded-2xl flex items-center justify-center mb-5">
         <span class="text-3xl">🔒</span>
       </div>
-      <h1 class="text-white font-bold text-lg">Split Karo is locked</h1>
+      <h1 class="text-white font-bold text-lg">WhoPaid is locked</h1>
       <p class="text-brand-200 text-sm mt-1 mb-7">Enter your PIN to continue</p>
 
       <!-- PIN dots -->

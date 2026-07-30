@@ -71,7 +71,7 @@ export class QrService {
       try {
         await navigator.share({
           files: [file],
-          title: 'Split Karo — Scan to pay',
+          title: 'WhoPaid — Scan to pay',
           text:  opts.caption || `Pay ${opts.payeeName} ${opts.amountLabel}`,
         });
         return;
@@ -123,7 +123,7 @@ export class QrService {
     ctx.fillText('Any UPI app · GPay · PhonePe · Paytm', W / 2, qy + QR_SIZE + 48);
     ctx.fillStyle = BRAND;
     ctx.font = '600 18px Inter, system-ui, sans-serif';
-    ctx.fillText('Split Karo', W / 2, qy + QR_SIZE + 80);
+    ctx.fillText('WhoPaid', W / 2, qy + QR_SIZE + 80);
 
     return new Promise((resolve, reject) =>
       canvas.toBlob(b => (b ? resolve(b) : reject(new Error('toBlob failed'))), 'image/png', 0.95));

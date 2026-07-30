@@ -651,7 +651,7 @@ export class GroupDetailComponent implements OnInit {
 
   upiLink(s: { toId: string; toName: string; amount: number }): string {
     const g = this.group();
-    return buildUpiUri(this.payeeUpi(s.toId), s.toName, s.amount, g ? `${g.name}` : 'Split Karo');
+    return buildUpiUri(this.payeeUpi(s.toId), s.toName, s.amount, g ? `${g.name}` : 'WhoPaid');
   }
 
   // QR / shareable pay-link sheet
@@ -662,7 +662,7 @@ export class GroupDetailComponent implements OnInit {
       vpa: this.payeeUpi(s.toId),
       name: s.toName,
       amount: s.amount,
-      note: g ? `${g.name}` : 'Split Karo',
+      note: g ? `${g.name}` : 'WhoPaid',
     });
   }
 
@@ -673,7 +673,7 @@ export class GroupDetailComponent implements OnInit {
     let text = `Hi ${s.fromName}, please pay ${amt} to ${s.toName}`;
     if (g) text += ` for "${g.name}"`;
     if (upi) text += `. UPI: ${upi}`;
-    text += ' — via Split Karo';
+    text += ' — via WhoPaid';
     return `https://wa.me/?text=${encodeURIComponent(text)}`;
   }
 
@@ -809,7 +809,7 @@ export class GroupDetailComponent implements OnInit {
     if (!g || !c) return '';
     let text = `Hi ${share.memberName}, please pay ${this.fmt(share.total)} to ${c.name} for "${g.name}"`;
     if ((c.upiId ?? '').trim()) text += `. UPI: ${c.upiId}`;
-    text += ' — via Split Karo';
+    text += ' — via WhoPaid';
     return `https://wa.me/?text=${encodeURIComponent(text)}`;
   }
 
@@ -817,7 +817,7 @@ export class GroupDetailComponent implements OnInit {
   shareBreakdown(): void {
     const g = this.group();
     if (!g) return;
-    this.shareTextOut(this.buildBreakdownText(g), `${g.name} — Split Karo`);
+    this.shareTextOut(this.buildBreakdownText(g), `${g.name} — WhoPaid`);
   }
 
   private buildBreakdownText(g: Group): string {
@@ -868,7 +868,7 @@ export class GroupDetailComponent implements OnInit {
         }
       }
     }
-    lines.push('_Made with Split Karo_');
+    lines.push('_Made with WhoPaid_');
     return lines.join('\n');
   }
 

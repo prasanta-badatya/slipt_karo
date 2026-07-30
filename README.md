@@ -1,4 +1,4 @@
-# Split Karo
+# WhoPaid
 
 A free, private expense splitter for Indian roommates and friend groups — split rent, ration, vegetables, restaurant bills and trips fairly, then settle up instantly over UPI.
 
@@ -12,7 +12,7 @@ A free, private expense splitter for Indian roommates and friend groups — spli
 
 ## What it does
 
-Split Karo has **three tools** for three real situations:
+WhoPaid has **three tools** for three real situations:
 
 | Tool | Use it for | Saves? |
 |------|-----------|--------|

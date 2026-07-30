@@ -428,7 +428,7 @@ export class QuickSplitComponent {
 
   private buildShareText(): string {
     const amt = +this.totalAmount;
-    const lines: string[] = ['⚡ *Quick Split — Split Karo*', ''];
+    const lines: string[] = ['⚡ *Quick Split — WhoPaid*', ''];
 
     if (this.mode() === 'equal') {
       const share = this.equalShare;
@@ -464,7 +464,7 @@ export class QuickSplitComponent {
       });
     }
 
-    lines.push('', '_via Split Karo app_');
+    lines.push('', '_via WhoPaid app_');
     return lines.join('\n');
   }
 
