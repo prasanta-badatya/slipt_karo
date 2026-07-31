@@ -1,7 +1,7 @@
 {
-  "name": "Split Karo",
-  "short_name": "Split Karo",
-  "description": "Split bills stress-free with your roommates. Track rent, ration, and vegetable expenses in one place.",
+  "name": "WhoPaid",
+  "short_name": "WhoPaid",
+  "description": "Split any shared expense — trips, rent, dinners, or group outings. Equal, exact, or day-wise, with UPI settle-up.",
   "start_url": "/split_karo/",
   "display": "standalone",
   "orientation": "portrait-primary",

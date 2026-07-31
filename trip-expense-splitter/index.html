@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Trip Expense Splitter — Who Owes Whom | WhoPaid</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Free trip expense splitter for group travel. Add who paid for what, and get the fewest transfers needed to settle up. Works for any group size. No sign-up.">
+<link rel="canonical" href="https://prasanta-badatya.github.io/split_karo/trip-expense-splitter/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://prasanta-badatya.github.io/split_karo/trip-expense-splitter/">
+<meta property="og:title" content="Trip Expense Splitter — Who Owes Whom">
+<meta property="og:description" content="Add who paid for what on your trip and get the fewest transfers needed to settle up. Free, no sign-up.">
+<meta property="og:image" content="https://prasanta-badatya.github.io/split_karo/assets/og-image.png">
+<meta property="og:site_name" content="WhoPaid">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Trip Expense Splitter — Who Owes Whom">
+<meta name="twitter:description" content="Add who paid for what on your trip and get the fewest transfers needed to settle up. Free, no sign-up.">
+<meta name="twitter:image" content="https://prasanta-badatya.github.io/split_karo/assets/og-image.png">
+
+<meta name="theme-color" content="#6366f1">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "WhoPaid", "item": "https://prasanta-badatya.github.io/split_karo/" },
+    { "@type": "ListItem", "position": 2, "name": "Trip Expense Splitter", "item": "https://prasanta-badatya.github.io/split_karo/trip-expense-splitter/" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you split expenses on a group trip?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Track each expense with the amount, who paid it, and who shared it. At the end, work out each person's net position by subtracting what they owe from what they paid. People with a positive net are owed money, people with a negative net owe money, and you settle by transferring between them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does simplifying debts mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Instead of every person paying back every other person, you net everything out first and then match the biggest debtor to the biggest creditor. A six-person trip can drop from fifteen possible transfers to as few as five, and nobody has to send several small payments."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if one person did not share an expense?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Untick them for that expense. Only the people who actually shared it are charged, so drinks that two of six people bought are split between those two rather than across the whole group."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this trip expense splitter free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. It is free, needs no sign-up, and runs entirely in your browser. Nothing you type is sent to a server."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--b:#6366f1;--b7:#4338ca;--ink:#0f172a;--mut:#475569;--line:#e2e8f0;--bg:#f8fafc}
+  body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
+       line-height:1.65;background:#fff;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,255,255,.92);
+         backdrop-filter:blur(8px);z-index:10}
+  header .wrap{display:flex;align-items:center;gap:10px;height:56px}
+  .mark{width:30px;height:30px;border-radius:9px;background:var(--b);display:flex;align-items:center;justify-content:center}
+  .mark svg{width:19px;height:19px}
+  .bname{font-weight:700;font-size:15px}
+  header a.cta{margin-left:auto;font-size:13px;font-weight:600;color:var(--b7);text-decoration:none}
+  nav.crumb{font-size:13px;color:var(--mut);padding:18px 0 0}
+  nav.crumb a{color:var(--b7)}
+  h1{font-size:2rem;line-height:1.2;letter-spacing:-.5px;margin:10px 0 12px}
+  .lede{color:var(--mut);font-size:1.05rem;margin-bottom:26px}
+  h2{font-size:1.3rem;margin:38px 0 12px;letter-spacing:-.3px}
+  h3{font-size:1.05rem;margin:22px 0 8px}
+  p{margin-bottom:14px;color:#334155}
+  ul,ol{margin:0 0 14px 1.2rem;color:#334155}
+  li{margin:6px 0}
+  .calc{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--bg)}
+  label{display:block;font-size:12px;font-weight:600;text-transform:uppercase;
+        letter-spacing:.5px;color:var(--mut);margin-bottom:5px}
+  input[type=text],input[type=number],select{width:100%;padding:9px 11px;border:1px solid #cbd5e1;
+        border-radius:9px;font:inherit;font-size:14.5px;background:#fff}
+  input:focus,select:focus{outline:2px solid var(--b);outline-offset:-1px;border-color:var(--b)}
+  .sec{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
+       color:var(--mut);margin:2px 0 8px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+  .chip{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #cbd5e1;
+        border-radius:999px;padding:6px 8px 6px 12px;font-size:14px}
+  .chip input{border:0;padding:0;width:88px;font-size:14px;background:transparent}
+  .chip input:focus{outline:none}
+  .chip button{background:none;border:0;color:#94a3b8;cursor:pointer;font-size:16px;line-height:1;padding:0 2px}
+  .chip button:hover{color:#dc2626}
+  .btn{padding:8px 14px;border:1px dashed #cbd5e1;background:#fff;border-radius:9px;
+       font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;color:var(--b7)}
+  .exp{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}
+  .exp .r1{display:flex;gap:8px;margin-bottom:9px}
+  .exp .r1 .d{flex:2;min-width:0}
+  .exp .r1 .a{flex:1;min-width:82px}
+  .exp .r2{display:flex;gap:8px;align-items:flex-end}
+  .exp .r2 .p{flex:1}
+  .exp .del{background:none;border:0;color:#94a3b8;cursor:pointer;font-size:17px;padding:0 4px}
+  .exp .del:hover{color:#dc2626}
+  .shared{margin-top:10px}
+  .shared .who{display:flex;flex-wrap:wrap;gap:6px}
+  .tog{font-size:13px;padding:5px 11px;border-radius:999px;border:1px solid #cbd5e1;
+       background:#fff;color:var(--mut);cursor:pointer;font-family:inherit;font-weight:500}
+  .tog[aria-pressed=true]{background:#e0e7ff;border-color:var(--b);color:var(--b7);font-weight:600}
+  table{width:100%;border-collapse:collapse;margin-top:4px}
+  th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);font-size:14px}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--mut)}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  .pos{color:#047857;font-weight:600}
+  .neg{color:#b91c1c;font-weight:600}
+  .out{margin-top:18px;border-top:2px solid var(--ink);padding-top:14px}
+  .settle{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 13px;
+       margin-bottom:7px;font-size:14.5px;display:flex;justify-content:space-between;gap:10px}
+  .settle b{font-variant-numeric:tabular-nums;white-space:nowrap}
+  .ok{background:#ecfdf5;border:1px solid #6ee7b7;color:#065f46;padding:10px 13px;
+      border-radius:10px;font-size:14px}
+  .note{font-size:13px;color:#64748b;margin-top:10px}
+  .cta-box{background:linear-gradient(125deg,#6366f1,#4f46e5);color:#fff;border-radius:16px;
+       padding:26px;margin:38px 0 10px;text-align:center}
+  .cta-box h2{color:#fff;margin:0 0 8px;font-size:1.25rem}
+  .cta-box p{color:rgba(255,255,255,.9);margin-bottom:16px}
+  .cta-box a{display:inline-block;background:#fff;color:var(--b7);font-weight:700;
+       padding:12px 26px;border-radius:999px;text-decoration:none}
+  .eg{background:var(--bg);border-left:3px solid var(--b);padding:14px 16px;border-radius:0 10px 10px 0;margin:14px 0}
+  dt{font-weight:600;margin-top:16px}
+  dd{margin:4px 0 0;color:#334155}
+  footer{border-top:1px solid var(--line);margin-top:44px;padding:22px 0 40px;font-size:13.5px;color:var(--mut)}
+  footer a{color:var(--b7)}
+  @media(max-width:520px){h1{font-size:1.6rem}.calc{padding:15px}.exp .r1{flex-wrap:wrap}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="mark"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11" fill="#fff"/><path d="M17.3 7 L13.4 16 L16.6 16 L14.7 25 L19.8 14.7 L16.6 14.7 Z" fill="#4338ca"/></svg></span>
+    <span class="bname">WhoPaid</span>
+    <a class="cta" href="../">Open the app →</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <nav class="crumb"><a href="../">WhoPaid</a> › Trip Expense Splitter</nav>
+
+  <h1>Trip Expense Splitter — Who Owes Whom</h1>
+  <p class="lede">One person books the hotel, another pays for fuel, someone else covers dinner.
+  Add who paid for what and this works out the fewest transfers needed to settle up.
+  Free, instant, nothing leaves your browser.</p>
+
+  <section class="calc" aria-label="Trip expense splitter">
+    <div class="sec">Who is on the trip</div>
+    <div class="chips" id="people"></div>
+    <button type="button" class="btn" id="addP">+ Add person</button>
+
+    <div class="sec" style="margin-top:20px">Expenses</div>
+    <div id="exps"></div>
+    <button type="button" class="btn" id="addE">+ Add expense</button>
+
+    <div class="out">
+      <div class="sec">Net position</div>
+      <table>
+        <thead><tr><th>Person</th><th class="num">Paid</th><th class="num">Share</th><th class="num">Net</th></tr></thead>
+        <tbody id="bal"></tbody>
+      </table>
+      <div class="sec" style="margin-top:20px">Settle up — fewest transfers</div>
+      <div id="settle"></div>
+      <p class="note" id="note"></p>
+    </div>
+  </section>
+
+  <h2>How trip expense splitting works</h2>
+  <p>The mistake most groups make is trying to settle each expense on its own. Six people, ten
+  expenses, and suddenly everyone owes everyone a little. The fix is to net everything out first.</p>
+  <ol>
+    <li><strong>Total what each person paid</strong> across all expenses.</li>
+    <li><strong>Total what each person's share comes to</strong>, counting only the expenses they actually shared.</li>
+    <li><strong>Net = paid − share.</strong> Positive means the group owes them; negative means they owe the group.</li>
+    <li><strong>Match the biggest debtor to the biggest creditor</strong>, repeatedly, until everyone is at zero.</li>
+  </ol>
+  <div class="eg"><strong>Net = what you paid − what you owe.</strong> The nets always sum to zero.
+  If they don't, an expense has been entered twice.</div>
+
+  <h3>Why the last step matters</h3>
+  <p>Netting alone still leaves you sending money in every direction. Matching biggest-to-biggest is
+  what collapses it. In a group of six there are fifteen possible pairs of people; a settled trip
+  usually needs five transfers or fewer. Same money, far less UPI admin, and much less chance of
+  someone forgetting a ₹200 payment.</p>
+
+  <h2>Expenses only some people shared</h2>
+  <p>Not everything is shared by the whole group. Two of you take a taxi to the airport early;
+  three of you skip the scuba diving. Untick the people who did not share an expense and only the
+  rest are charged for it.</p>
+  <p>This is where a spreadsheet starts to hurt. Every partially-shared expense needs its own
+  divisor, and one wrong row quietly throws off everyone's balance with nothing to warn you.</p>
+
+  <h2>Frequently asked questions</h2>
+  <dl>
+    <dt>How do you split expenses on a group trip?</dt>
+    <dd>Record each expense with its amount, who paid, and who shared it. Then net each person's
+    payments against their share and settle between the positive and negative balances.</dd>
+    <dt>What does simplifying debts mean?</dt>
+    <dd>Netting everything out and matching the biggest debtor to the biggest creditor, so the group
+    makes the fewest possible transfers instead of everyone repaying everyone.</dd>
+    <dt>What if one person did not share an expense?</dt>
+    <dd>Untick them for that expense. Only the people who shared it are charged.</dd>
+    <dt>Is this trip expense splitter free?</dt>
+    <dd>Yes — free, no sign-up, and it runs entirely in your browser.</dd>
+  </dl>
+
+  <div class="cta-box">
+    <h2>Travelling with the same group again?</h2>
+    <p>WhoPaid saves your trips, tracks part-payments, and settles up over UPI.</p>
+    <a href="../">Open WhoPaid — free</a>
+  </div>
+
+  <p style="margin-top:26px;font-size:14.5px">Splitting rent instead of a trip?
+  Use the <a href="../rent-split-calculator/" style="color:var(--b7)">rent split calculator</a>
+  for equal or day-wise splits — or see how WhoPaid compares as a
+  <a href="../splitwise-alternative/" style="color:var(--b7)">free Splitwise alternative</a>.</p>
+</main>
+
+<footer class="wrap">
+  <p><a href="../">WhoPaid</a> — free bill split calculator for trips, rent and group expenses.
+  No sign-up, works offline, settles over UPI.</p>
+</footer>
+
+<script>
+(function(){
+  var P=document.getElementById('people'), E=document.getElementById('exps'),
+      B=document.getElementById('bal'), S=document.getElementById('settle'),
+      note=document.getElementById('note');
+  var uid=0;
+  var people=[{id:++uid,n:'Asha'},{id:++uid,n:'Bhavin'},{id:++uid,n:'Chetan'},{id:++uid,n:'Divya'}];
+  var exps=[
+    {id:++uid,d:'Hotel (2 nights)',a:8000,by:people[0].id,among:people.map(function(p){return p.id})},
+    {id:++uid,d:'Fuel',a:3200,by:people[1].id,among:people.map(function(p){return p.id})},
+    {id:++uid,d:'Dinner',a:2400,by:people[2].id,among:people.map(function(p){return p.id})}
+  ];
+
+  function money(v){
+    if(!isFinite(v))v=0;
+    var r=Math.round(v*100)/100, neg=r<0;
+    return (neg?'-':'')+'₹'+Math.abs(r).toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
+  }
+  function nameOf(id){for(var i=0;i<people.length;i++)if(people[i].id===id)return people[i].n;return '?'}
+
+  function compute(){
+    var paid={},share={};
+    people.forEach(function(p){paid[p.id]=0;share[p.id]=0});
+    exps.forEach(function(e){
+      var amt=parseFloat(e.a)||0;
+      if(paid[e.by]!==undefined) paid[e.by]+=amt;
+      var among=e.among.filter(function(id){return paid[id]!==undefined});
+      if(among.length>0){
+        var per=amt/among.length;
+        among.forEach(function(id){share[id]+=per});
+      }
+    });
+    var net=people.map(function(p){return {id:p.id,n:p.n,paid:paid[p.id],share:share[p.id],net:paid[p.id]-share[p.id]}});
+    return net;
+  }
+
+  // Greedy: repeatedly match the largest creditor with the largest debtor.
+  function settlements(net){
+    var cr=net.filter(function(x){return x.net>0.005}).map(function(x){return {n:x.n,v:x.net}});
+    var db=net.filter(function(x){return x.net<-0.005}).map(function(x){return {n:x.n,v:-x.net}});
+    cr.sort(function(a,b){return b.v-a.v}); db.sort(function(a,b){return b.v-a.v});
+    var out=[],i=0,j=0,guard=0;
+    while(i<db.length&&j<cr.length&&guard++<500){
+      var amt=Math.min(db[i].v,cr[j].v);
+      out.push({from:db[i].n,to:cr[j].n,amt:amt});
+      db[i].v-=amt; cr[j].v-=amt;
+      if(db[i].v<=0.005)i++;
+      if(cr[j].v<=0.005)j++;
+    }
+    return out;
+  }
+
+  function renderPeople(){
+    P.innerHTML='';
+    people.forEach(function(p,i){
+      var w=document.createElement('span'); w.className='chip';
+      var inp=document.createElement('input'); inp.type='text'; inp.value=p.n;
+      inp.setAttribute('aria-label','Name');
+      inp.oninput=function(){people[i].n=inp.value;renderExps();renderOut()};
+      w.appendChild(inp);
+      if(people.length>1){
+        var b=document.createElement('button'); b.type='button'; b.textContent='×';
+        b.setAttribute('aria-label','Remove '+p.n);
+        b.onclick=function(){
+          var id=people[i].id;
+          people.splice(i,1);
+          exps.forEach(function(e){
+            e.among=e.among.filter(function(x){return x!==id});
+            if(e.by===id) e.by=people.length?people[0].id:null;
+          });
+          renderAll();
+        };
+        w.appendChild(b);
+      }
+      P.appendChild(w);
+    });
+  }
+
+  function renderExps(){
+    E.innerHTML='';
+    exps.forEach(function(e,i){
+      var box=document.createElement('div'); box.className='exp';
+
+      var r1=document.createElement('div'); r1.className='r1';
+      var dw=document.createElement('div'); dw.className='d';
+      var di=document.createElement('input'); di.type='text'; di.value=e.d;
+      di.placeholder='What was it?'; di.setAttribute('aria-label','Description');
+      di.oninput=function(){exps[i].d=di.value};
+      dw.appendChild(di); r1.appendChild(dw);
+      var aw=document.createElement('div'); aw.className='a';
+      var ai=document.createElement('input'); ai.type='number'; ai.min='0'; ai.step='1';
+      ai.value=e.a; ai.style.textAlign='right'; ai.setAttribute('aria-label','Amount');
+      ai.oninput=function(){exps[i].a=ai.value;renderOut()};
+      aw.appendChild(ai); r1.appendChild(aw);
+      box.appendChild(r1);
+
+      var r2=document.createElement('div'); r2.className='r2';
+      var pw=document.createElement('div'); pw.className='p';
+      var pl=document.createElement('label'); pl.textContent='Paid by'; pw.appendChild(pl);
+      var sel=document.createElement('select'); sel.setAttribute('aria-label','Paid by');
+      people.forEach(function(p){
+        var o=document.createElement('option'); o.value=p.id; o.textContent=p.n;
+        if(p.id===e.by)o.selected=true; sel.appendChild(o);
+      });
+      sel.onchange=function(){exps[i].by=parseInt(sel.value,10);renderOut()};
+      pw.appendChild(sel); r2.appendChild(pw);
+      if(exps.length>1){
+        var del=document.createElement('button'); del.type='button'; del.className='del';
+        del.textContent='×'; del.title='Remove expense';
+        del.setAttribute('aria-label','Remove expense');
+        del.onclick=function(){exps.splice(i,1);renderAll()};
+        r2.appendChild(del);
+      }
+      box.appendChild(r2);
+
+      var sh=document.createElement('div'); sh.className='shared';
+      var sl=document.createElement('label'); sl.textContent='Shared by'; sh.appendChild(sl);
+      var who=document.createElement('div'); who.className='who';
+      people.forEach(function(p){
+        var t=document.createElement('button'); t.type='button'; t.className='tog';
+        t.textContent=p.n;
+        var on=e.among.indexOf(p.id)>=0;
+        t.setAttribute('aria-pressed',on);
+        t.onclick=function(){
+          var k=exps[i].among.indexOf(p.id);
+          if(k>=0) exps[i].among.splice(k,1); else exps[i].among.push(p.id);
+          renderExps(); renderOut();
+        };
+        who.appendChild(t);
+      });
+      sh.appendChild(who); box.appendChild(sh);
+      E.appendChild(box);
+    });
+  }
+
+  function renderOut(){
+    var net=compute();
+    B.innerHTML='';
+    net.forEach(function(x){
+      var tr=document.createElement('tr');
+      function cell(txt,cls){var td=document.createElement('td');td.textContent=txt;if(cls)td.className=cls;return td}
+      tr.appendChild(cell(x.n));
+      tr.appendChild(cell(money(x.paid),'num'));
+      tr.appendChild(cell(money(x.share),'num'));
+      var n=document.createElement('td'); n.className='num '+(x.net>0.005?'pos':(x.net<-0.005?'neg':''));
+      n.textContent=(x.net>0.005?'+':'')+money(x.net); tr.appendChild(n);
+      B.appendChild(tr);
+    });
+
+    var st=settlements(net);
+    S.innerHTML='';
+    if(!st.length){
+      S.innerHTML='<div class="ok">Everyone is square — no transfers needed.</div>';
+    }else{
+      st.forEach(function(s){
+        var d=document.createElement('div'); d.className='settle';
+        var l=document.createElement('span'); l.textContent=s.from+' → '+s.to;
+        var r=document.createElement('b'); r.textContent=money(s.amt);
+        d.appendChild(l); d.appendChild(r); S.appendChild(d);
+      });
+    }
+    var total=exps.reduce(function(s,e){return s+(parseFloat(e.a)||0)},0);
+    var pairs=people.length*(people.length-1)/2;
+    note.textContent='Trip total '+money(total)+' · '+st.length+' transfer'+(st.length===1?'':'s')+
+      ' instead of up to '+pairs+' possible pairs.';
+  }
+
+  function renderAll(){renderPeople();renderExps();renderOut()}
+
+  document.getElementById('addP').onclick=function(){
+    people.push({id:++uid,n:'Person '+(people.length+1)});
+    exps.forEach(function(e){e.among.push(people[people.length-1].id)});
+    renderAll();
+  };
+  document.getElementById('addE').onclick=function(){
+    exps.push({id:++uid,d:'',a:0,by:people.length?people[0].id:null,
+               among:people.map(function(p){return p.id})});
+    renderExps(); renderOut();
+  };
+  renderAll();
+})();
+</script>
+</body>
+</html>
