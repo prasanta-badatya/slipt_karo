@@ -54,7 +54,7 @@
           },
           "configurations": {
             "production": {
-              "baseHref": "/split_karo/",
+              "baseHref": "/whopaid/",
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json",
               "budgets": [

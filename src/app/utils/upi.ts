@@ -44,7 +44,7 @@ export function buildUpiUriFrom(r: UpiRequest): string {
 /**
  * Shareable `https://` pay link pointing at the in-app `/pay` redirect route.
  * Clickable in WhatsApp (unlike `upi://`); the route then hands off to the UPI app.
- * Resolved against the deployed base href (e.g. `/split_karo/`). Returns '' if no VPA.
+ * Resolved against the deployed base href (e.g. `/whopaid/`). Returns '' if no VPA.
  */
 export function buildUpiPayLink(r: UpiRequest, baseUri = document.baseURI): string {
   if (!(r.vpa || '').trim()) return '';

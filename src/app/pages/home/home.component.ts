@@ -47,8 +47,8 @@ import { ThemeToggleComponent } from '../../components/theme-toggle/theme-toggle
                 </div>
 
                 <h1 class="text-4xl sm:text-5xl lg:text-[52px] font-bold text-gray-900 leading-tight mb-4 anim-fade-up anim-d1">
-                  Split trip, rent &amp; group bills<br/>
-                  <span class="text-brand-500">stress-free.</span>
+                  Bill Split Calculator for<br/>
+                  <span class="text-brand-500">trips, rent &amp; roommates</span>
                 </h1>
 
                 <p class="text-lg text-gray-500 font-medium mb-6 anim-fade-up anim-d2">
@@ -187,6 +187,22 @@ import { ThemeToggleComponent } from '../../components/theme-toggle/theme-toggle
             </div>
           </div>
         </section>
+
+        <!--
+          Links to the static SEO pages that sit beside the app. Plain <a href>,
+          not routerLink: these are separate HTML files, so navigation must leave
+          the SPA. Relative hrefs resolve against <base href>.
+        -->
+        <footer class="bg-white border-t border-gray-100 py-8">
+          <div class="max-w-5xl mx-auto px-4 text-center">
+            <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">Guides &amp; calculators</p>
+            <nav class="flex flex-wrap gap-x-6 gap-y-2 justify-center text-sm">
+              <a href="rent-split-calculator/" class="text-brand-600 font-semibold hover:underline">Rent Split Calculator</a>
+              <a href="trip-expense-splitter/" class="text-brand-600 font-semibold hover:underline">Trip Expense Splitter</a>
+              <a href="splitwise-alternative/" class="text-brand-600 font-semibold hover:underline">Splitwise Alternative</a>
+            </nav>
+          </div>
+        </footer>
 
       </ng-container>
     </div>

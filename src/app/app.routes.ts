@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', title: 'WhoPaid — Free Bill Split Calculator for Trips & Rent', loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent) },
+  { path: '', title: 'Free Bill Split Calculator for Trips, Rent & Roommates — WhoPaid', loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent) },
   { path: 'groups', title: 'Your Groups — WhoPaid', loadComponent: () => import('./pages/groups/groups.component').then(m => m.GroupsComponent) },
   { path: 'new', title: 'New Group — WhoPaid', loadComponent: () => import('./pages/new-roster/new-roster.component').then(m => m.NewRosterComponent) },
   { path: 'group/:id', title: 'Group — WhoPaid', loadComponent: () => import('./pages/roster-detail/roster-detail.component').then(m => m.RosterDetailComponent) },

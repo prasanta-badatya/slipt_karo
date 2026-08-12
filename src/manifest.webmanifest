@@ -2,13 +2,13 @@
   "name": "WhoPaid",
   "short_name": "WhoPaid",
   "description": "Split any shared expense — trips, rent, dinners, or group outings. Equal, exact, or day-wise, with UPI settle-up.",
-  "start_url": "/split_karo/",
+  "start_url": "/whopaid/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#f8fafc",
   "theme_color": "#6366f1",
   "lang": "en-IN",
-  "scope": "/split_karo/",
+  "scope": "/whopaid/",
   "categories": ["finance", "utilities", "lifestyle"],
   "icons": [
     {
@@ -30,7 +30,7 @@
       "name": "New Group",
       "short_name": "New Group",
       "description": "Create a new expense-splitting group",
-      "url": "/split_karo/new",
+      "url": "/whopaid/new",
       "icons": [
         {
           "src": "assets/icons/icon.svg",
